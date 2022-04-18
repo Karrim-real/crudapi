@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('v1/allorder', [OrderController::class, 'index']);
+Route::get('v1/allorders', [OrderController::class, 'index']);
 Route::get('v1/order/{id}', [OrderController::class, 'show']);
 Route::get('v1/orderfulfill', [OrderController::class, 'fulfilledOrder']);
 Route::post('v1/createorder', [OrderController::class, 'create']);
