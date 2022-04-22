@@ -23,7 +23,6 @@ Route::get('v1/allorders', [OrderController::class, 'index']);
 Route::get('v1/order/{id}', [OrderController::class, 'show']);
 Route::get('v1/orderfulfill', [OrderController::class, 'fulfilledOrder']);
 Route::get('v1/searchorder', [OrderController::class, 'search']);
-
 Route::post('v1/createorder', [OrderController::class, 'store']);
 Route::put('v1/updateorder/{id}', [OrderController::class, 'update']);
 Route::delete('v1/del-order/{id}', [OrderController::class, 'destroy']);
