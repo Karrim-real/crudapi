@@ -92,10 +92,20 @@ class OrderController extends Controller
     public function show(Request $request)
     {
         $orderId = $request->route('id');
+        $result = $this->orderRepository->getOrderById($orderId);
+        if(!$result){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No Data Found'
+            ]);
+        }
+
         return response()->json([
-            'data' => $this->orderRepository->getOrderById($orderId),
-            'status' => 'success'
-        ]);
+                'data' => $result,
+                'status' => 'success'
+            ]);
+
+
     }
 
     /**
@@ -123,11 +133,19 @@ class OrderController extends Controller
             'client',
             'details'
         ]);
-        return response()->json([
-            'data' => $this->orderRepository->updateOrder($orderId, $orderDetails),
-            'status' => 'sucess',
-            'message' => 'Data Updated'
-        ]);
+
+        $updateData = $this->orderRepository->updateOrder($orderId, $orderDetails);
+        if(!$updateData)
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No Data Found with this ID'
+            ]);
+
+                return response()->json([
+                    'data' => $updateData,
+                    'status' => 'sucess',
+                    'message' => 'Data Updated'
+                ]);
     }
 
     /**
@@ -139,8 +157,15 @@ class OrderController extends Controller
     public function destroy(Request $request)
     {
         $orderId = $request->route('id');
+        $result = $this->orderRepository->deleteOrder($orderId);
+        if(!$result)
         return response()->json([
-            'data' => $this->orderRepository->deleteOrder($orderId),
+            'status' => 'error',
+            'message' => 'No Data Found with this ID'
+        ]);
+
+        return response()->json([
+            'data' =>$result,
             'status' => 'success',
             'message' => 'Data Deleted'
         ]);
