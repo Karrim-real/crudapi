@@ -13,7 +13,7 @@ class UpdateOrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class UpdateOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+           'client' => 'required',
+           'details' => 'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'client.required' => 'Client field must cant be empty',
+            'details.required' => 'Details Field cant be empty'
         ];
     }
 }

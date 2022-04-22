@@ -18,7 +18,7 @@ class OrderRepository implements OrderRepositoryInterface
 
     public function deleteOrder($orderId)
     {
-        Order::destroy($orderId);
+        return Order::destroy($orderId);
     }
 
     public function createOrder(array $orderDetails)
@@ -34,6 +34,10 @@ class OrderRepository implements OrderRepositoryInterface
 
     public function getFulfilledOrders()
     {
-        return Order::where('is_fulfilled', true);
+        return Order::where('is_fulfilled', true)->get();
+    }
+    public function searchOrder($searchText)
+    {
+        return Order::where('client', 'LIKE', '%'.$searchText.'%')->get();
     }
 }

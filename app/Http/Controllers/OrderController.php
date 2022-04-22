@@ -36,19 +36,28 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
-    {
+    // public function create(StoreOrderRequest $request)
+    // {
 
-        $orderDetails = $request->only([
-            'client',
-            'details'
-        ]);
-        return response()->json([
-            'data' => $this->orderRepository->createOrder($orderDetails),
-            'status' => 'sucess',
-            'message' => 'Data created'
-        ]);
-    }
+    //     // $orderDetails = $request->validate([
+    //     //     'details' => 'required',
+    //     //     'client' => 'required'
+    //     // ]);
+    //     // return response()->json($orderDetails);
+    //     $orderDetails = $request->validated();
+    //     $result = $this->orderRepository->createOrder($orderDetails);
+    //     // if(!$result){
+    //     //     return response()->json([
+    //     //         'status' => 'error',
+    //     //         'message' => $result
+    //     //     ]);
+    //     // }
+    //     return response()->json([
+    //         'data' => $result,
+    //         'status' => 'sucess',
+    //         'message' => 'Data created'
+    //     ]);
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -58,7 +67,20 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+         // return response()->json($orderDetails);
+         $orderDetails = $request->validated();
+         $result = $this->orderRepository->createOrder($orderDetails);
+         // if(!$result){
+         //     return response()->json([
+         //         'status' => 'error',
+         //         'message' => $result
+         //     ]);
+         // }
+         return response()->json([
+             'data' => $result,
+             'status' => 'sucess',
+             'message' => 'Data created'
+         ]);
     }
 
     /**
@@ -94,7 +116,7 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UpdateOrderRequest $request)
     {
         $orderId = $request->route('id');
         $orderDetails = $request->only([
@@ -130,6 +152,16 @@ class OrderController extends Controller
         return response()->json([
             'data' => $this->orderRepository->getFulfilledOrders(),
             'status' => 'success',
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $searchText = $request->get('search');
+        // return response()->json($searchText);
+        return response()->json([
+            'status' => 'success',
+            'data' => $this->orderRepository->searchOrder($searchText)
         ]);
     }
 }

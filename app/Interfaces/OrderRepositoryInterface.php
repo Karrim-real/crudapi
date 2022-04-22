@@ -9,5 +9,6 @@ interface OrderRepositoryInterface
      public function updateOrder($orderId, array $newDetails);
      public function deleteOrder($orderId);
      public function getFulfilledOrders();
+     public function searchOrder($searchText);
 
 }

@@ -24,8 +24,21 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
+            'details' => 'required',
+            'client' => 'required',
 
         ];
     }
+
+    public function messages()
+    {
+        return [
+
+            'details.required' => 'Details Field cant be Empty',
+            'client.required' => 'Client field cant be Empty',
+        ];
+    }
+
+
 }
