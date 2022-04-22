@@ -10,6 +10,7 @@ class Order extends Model
     use HasFactory;
     protected $fillable = [
         'client',
-        'details'
+        'details',
+        'is_fulfilled'
     ];
 }

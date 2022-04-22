@@ -97,7 +97,7 @@ class OrderController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'No Data Found'
-            ]);
+            ],404);
         }
 
         return response()->json([
@@ -139,7 +139,7 @@ class OrderController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'No Data Found with this ID'
-            ]);
+            ],404);
 
                 return response()->json([
                     'data' => $updateData,
@@ -162,7 +162,7 @@ class OrderController extends Controller
         return response()->json([
             'status' => 'error',
             'message' => 'No Data Found with this ID'
-        ]);
+        ], 404);
 
         return response()->json([
             'data' =>$result,
