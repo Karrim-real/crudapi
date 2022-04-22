@@ -95,3 +95,10 @@ The api use the Repository Design Pattern
         HTTP Method=> DELETE
         route url : domain/api/v1/del-order/{id}
         return reponse: Order Deleted
+
+
+    Search for Order
+        HTTP Method=> GET
+        route url : domain/api/v1/searchorder?search
+        Data: Query Parameter
+        return reponse: Json Datas
