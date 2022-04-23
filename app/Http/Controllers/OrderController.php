@@ -183,7 +183,7 @@ class OrderController extends Controller
     public function search(Request $request)
     {
         $searchText = $request->get('search');
-        // return response()->json($searchText);
+
         return response()->json([
             'status' => 'success',
             'data' => $this->orderRepository->searchOrder($searchText)
