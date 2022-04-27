@@ -68,6 +68,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 #Api DOC
 This api is for training purposes
 The api use the Repository Design Pattern
+Hosted on Heroku
+Api Link : https://damp-scrubland-49854.herokuapp.com
 
     Route
     Getting All Orders
